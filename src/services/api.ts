@@ -3,7 +3,9 @@
  * Handles communication with the backend API
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+// Normalize API base URL to always end with /api
+const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+const API_BASE_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl.replace(/\/$/, '')}/api`
 
 export interface ProgressData {
   step: string
